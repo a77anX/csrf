@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Win a Prize!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .prize-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 20px 0;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .overlay-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ff4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Congratulations! 🎉</h1>
+        <div class="prize-box">
+            <h2>You've Won a Prize!</h2>
+            <p>Click the button below to claim your amazing prize!</p>
+            <p>Hurry, this offer won't last long!</p>
+        </div>
+    </div>
+
+    <!-- Malicious iframe hidden behind the overlay -->
+    <iframe src="http://localhost/csrf/clickjacking_demo.php"></iframe>
+
+    <!-- Overlay that looks like a legitimate prize claim button -->
+    <div class="overlay">
+        <div class="overlay-content">
+            <h2>🎁 Claim Your Prize! 🎁</h2>
+            <p>You've been selected to win a $1000 gift card!</p>
+            <button class="button" onclick="claimPrize()">Claim Now!</button>
+        </div>
+    </div>
+
+    <script>
+        function claimPrize() {
+            // This function is just for demonstration
+            // In a real attack, the iframe would be positioned to make the user click the actual button
+            alert('This is a demonstration of a clickjacking attack. In a real attack, clicking this button would trigger the form submission in the hidden iframe.');
+        }
+    </script>
+</body>
+</html> 

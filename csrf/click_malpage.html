@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Frame Busting Example</title>
+  <script>
+    // Frame busting script
+    if (window.top !== window.self) {
+      // If the page is inside an iframe, break out
+      window.top.location = window.self.location.href;
+    }
+  </script>
+</head>
+<body>
+  <h1>Frame Busting Protection</h1>
+  <p>This page cannot be embedded in an iframe on another site.</p>
+</body>
+</html>

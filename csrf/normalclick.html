@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clickjacking Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #target-frame {
+      width: 400px;
+      height: 300px;
+      border: none;
+      opacity: 0.01; /* Make iframe almost invisible */
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    #fake-button {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 300px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 24px;
+      line-height: 300px;
+      cursor: pointer;
+      z-index: 2;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clickjacking Demo</h1>
+  <p>Click the green button below (which is actually an invisible iframe).</p>
+
+  <!-- Invisible iframe loading the target page -->
+  <iframe id="target-frame" src="https://example.com"></iframe>
+
+  <!-- Fake button overlay -->
+  <div id="fake-button">Click Me!</div>
+</body>
+</html>
